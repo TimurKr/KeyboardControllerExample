@@ -1,0 +1,50 @@
+import CustomKeyboardAwareScrollView from "@/components/CustomKeyboardAwareScrollView";
+import { useState } from "react";
+import { Text, TextInput, View } from "react-native";
+import { KeyboardStickyView } from "react-native-keyboard-controller";
+
+export default function Index() {
+  const [text, setText] = useState("");
+  return (
+    <View
+      style={{
+        flex: 1,
+      }}
+    >
+      <CustomKeyboardAwareScrollView
+        keyboardDismissMode="interactive"
+        style={{ borderWidth: 1, borderColor: "red" }}
+      >
+        {Array.from({ length: 20 }).map((_, index) => (
+          <Text key={index}>Bla bla bla</Text>
+        ))}
+        <TextInput
+          placeholder="Enter your text"
+          style={{
+            borderWidth: 1,
+            padding: 10,
+            borderRadius: 5,
+          }}
+          multiline={true}
+          scrollEnabled={false}
+          value={text}
+          onChangeText={setText}
+        />
+        {Array.from({ length: 20 }).map((_, index) => (
+          <Text key={index}>Bla bla bla</Text>
+        ))}
+      </CustomKeyboardAwareScrollView>
+      <KeyboardStickyView>
+        <View
+          style={{
+            borderWidth: 1,
+            padding: 10,
+            borderRadius: 5,
+          }}
+        >
+          <Text>Testing Sticky Toolbar</Text>
+        </View>
+      </KeyboardStickyView>
+    </View>
+  );
+}
